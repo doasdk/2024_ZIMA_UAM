@@ -8,7 +8,7 @@ Projects:
 
 -------------------------------------------------------------------------------------------------
 
-- czary - Ihnatsi Byshniou
+- czary - Ihnatsi Byshniou (Ignacy)
     1. Obrażenia
     2. Bufy/debufy
     3. Mistrzostwo magii*
@@ -33,7 +33,7 @@ Projects:
     3. Artefakty mają swoje miejsca
 -------------------------------------------------------------------------------------------------
 
-- artefakty
+- artefakty - Yevheniia Kryzhanovska
     1. Spell
     2. Combat 3 Primary
 -------------------------------------------------------------------------------------------------
@@ -44,14 +44,11 @@ Projects:
     3. 4 z dołu, magia
 -------------------------------------------------------------------------------------------------
 
-- maszyny oblężnicze
+- maszyny oblężnicze - Aliaksei Konyshau
     1. Namiot
     2. Balista
     3. Katapulta
 -------------------------------------------------------------------------------------------------
 
-- Herosi
-    - standard statistic
-    - ekwipunek
+- Heros
 - moral / luck
-- konwersja eco -> creature
