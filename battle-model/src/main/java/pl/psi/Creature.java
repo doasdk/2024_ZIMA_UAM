@@ -19,7 +19,9 @@ public class Creature
     private int defence;
     private int damage;
     private int hp;
+    private int moveRange;
     private DamageCalculator damageCalculator;
+    private boolean canCounterAttack = true;
 
     public Creature( int aAttack, int aDefence, int aDamage, int aHp )
     {
@@ -28,16 +30,27 @@ public class Creature
 
     public Creature( int aAttack, int aDefence, int aDamage, int aHp, DamageCalculator aDamageCalculator )
     {
+        this( aAttack, aDefence, aDamage, aHp, aDamageCalculator, 1 );
+    }
+
+    public Creature( int aAttack, int aDefence, int aDamage, int aHp, DamageCalculator aDamageCalculator,
+        int aMoveRange )
+    {
         attack = aAttack;
         defence = aDefence;
         damage = aDamage;
         hp = aHp;
         damageCalculator = aDamageCalculator;
+        moveRange = aMoveRange;
     }
 
     public void attack( Creature aDefender )
     {
         aDefender.hp = aDefender.hp - damageCalculator.calculateDamage( this, aDefender.defence );
+        if( aDefender.hp > 0 && aDefender.canCounterAttack )
+        {
+            aDefender.canCounterAttack = false;
+            hp = hp - damageCalculator.calculateDamage( aDefender, defence );
+        }
     }
-
 }
