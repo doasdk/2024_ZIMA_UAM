@@ -7,12 +7,12 @@
 
 package pl.psi;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * TODO: Describe this class (The first line - until the first dot - will interpret as the brief description).
@@ -46,21 +46,31 @@ class TurnQueueTest
     // }
 
     @Test
-    void x()
+    void queueShouldBeInitializedAutomatically()
     {
         List< Creature > c1 = List.of( dummyCreature(), dummyCreature() );
         List< Creature > c2 = List.of( dummyCreature(), dummyCreature(), dummyCreature() );
         TurnQueue queue = new TurnQueue( c1, c2 );
 
-        assertThat( queue.getCurrentCreature()
-            .getMoveRange() ).isEqualTo( 5 );
+        assertCurrentMoveRange( queue, 5 );
+        queue.next();
+        assertCurrentMoveRange( queue, 4 );
+        queue.next();
+        assertCurrentMoveRange( queue, 3 );
+        queue.next();
+        assertCurrentMoveRange( queue, 2 );
+        queue.next();
+        assertCurrentMoveRange( queue, 1 );
 
-        boolean isNewTurn = queue.next();
-        if (isNewTurn){
-            queue.refresh();
-        }
+        // NEW ROUND
+        queue.next();
+        assertCurrentMoveRange( queue, 5 );
+    }
+
+    private static void assertCurrentMoveRange( TurnQueue queue, int expected )
+    {
         assertThat( queue.getCurrentCreature()
-                .getMoveRange() ).isEqualTo( 4 );
+            .getMoveRange() ).isEqualTo( expected );
     }
 
     private static Creature dummyCreature()

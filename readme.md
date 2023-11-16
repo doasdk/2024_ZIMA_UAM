@@ -20,14 +20,14 @@ Projects:
     2. Dwie dodatkowe frakcje
 -------------------------------------------------------------------------------------------------
 
-- pola specjalne - Bartosz Bronikowski
+- pola specjalne - Bartosz Bronikowski, 
     1. Przeszkoda dla jednostek chodzących 
     2. zadające obrażenia (dla latających albo chodzacych)
     3. Nakładające buffy/debufy*
     4. Przeszkody do zaatakowania
 -------------------------------------------------------------------------------------------------
 
-- ekonomia
+- ekonomia - Kajetan Szal
     1. Zakładki na kupowanie wszelakich bytów (kreatury, czary, artefakty, umiejętności)
     2. Dodatkowe gui przed z wybore frakcji oraz bohatera
     3. Artefakty mają swoje miejsca

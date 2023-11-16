@@ -27,7 +27,7 @@ class CreatureTest
 
         attacker.attack( defender );
 
-        assertThat( defender.getHp() ).isEqualTo( 5 );
+        assertThat( defender.getCurrentHp() ).isEqualTo( 5 );
     }
 
     @Test
@@ -38,7 +38,7 @@ class CreatureTest
 
         attacker.attack( defender );
 
-        assertThat( defender.getHp() ).isEqualTo( 15 );
+        assertThat( defender.getCurrentHp() ).isEqualTo( 15 );
     }
 
     @Test
@@ -49,6 +49,6 @@ class CreatureTest
 
         attackerWithDefenceReduce.attack( defender );
 
-        assertThat( defender.getHp() ).isEqualTo( 11 );
+        assertThat( defender.getCurrentHp() ).isEqualTo( 11 );
     }
 }

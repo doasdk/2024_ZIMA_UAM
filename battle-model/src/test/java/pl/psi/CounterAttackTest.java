@@ -27,7 +27,7 @@ public class CounterAttackTest {
         attacker.attack(defender);
 
         //then
-        assertThat(attacker.getHp()).isEqualTo(10);
+        assertThat(attacker.getCurrentHp()).isEqualTo(10);
     }
 
     @Test
@@ -40,7 +40,7 @@ public class CounterAttackTest {
         attacker.attack(defender);
 
         //then
-        assertThat(attacker.getHp()).isEqualTo(20);
+        assertThat(attacker.getCurrentHp()).isEqualTo(20);
     }
 
     @Test
@@ -55,7 +55,7 @@ public class CounterAttackTest {
         attacker2.attack(defender);
 
         //then
-        assertThat(attacker1.getHp()).isEqualTo(10);
-        assertThat(attacker2.getHp()).isEqualTo(20);
+        assertThat(attacker1.getCurrentHp()).isEqualTo(10);
+        assertThat(attacker2.getCurrentHp()).isEqualTo(20);
     }
 }

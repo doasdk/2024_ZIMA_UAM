@@ -7,18 +7,25 @@
 
 package pl.psi;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * TODO: Describe this class (The first line - until the first dot - will interpret as the brief description).
  */
 @Getter
-public class Creature
+@Setter( AccessLevel.PROTECTED )
+public class Creature implements PropertyChangeListener
 {
     private int attack;
     private int defence;
     private int damage;
     private int hp;
+    private int currentHp;
     private int moveRange;
     private DamageCalculator damageCalculator;
     private boolean canCounterAttack = true;
@@ -40,17 +47,31 @@ public class Creature
         defence = aDefence;
         damage = aDamage;
         hp = aHp;
+        currentHp = hp;
         damageCalculator = aDamageCalculator;
         moveRange = aMoveRange;
     }
 
+    public Creature()
+    {
+
+    }
+
     public void attack( Creature aDefender )
     {
-        aDefender.hp = aDefender.hp - damageCalculator.calculateDamage( this, aDefender.defence );
-        if( aDefender.hp > 0 && aDefender.canCounterAttack )
+        int newCurrentHp =
+            aDefender.getCurrentHp() - getDamageCalculator().calculateDamage( this, aDefender.getDefence() );
+        aDefender.setCurrentHp( newCurrentHp );
+        if( aDefender.getCurrentHp() > 0 && aDefender.isCanCounterAttack() )
         {
-            aDefender.canCounterAttack = false;
-            hp = hp - damageCalculator.calculateDamage( aDefender, defence );
+            aDefender.setCanCounterAttack( false );
+            setCurrentHp( getDamageCalculator().calculateDamage( aDefender, getDefence() ) );
         }
+    }
+
+    @Override
+    public void propertyChange( PropertyChangeEvent aEvent )
+    {
+
     }
 }
