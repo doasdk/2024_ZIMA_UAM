@@ -16,7 +16,7 @@
 
     <modules>
         <module>battle-model</module>
-<!--        <module>battle-gui</module>-->
+        <module>battle-gui</module>
     </modules>
 
 
