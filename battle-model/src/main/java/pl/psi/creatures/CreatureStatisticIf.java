@@ -9,6 +9,8 @@ public interface CreatureStatisticIf {
     int getMaxHp();
     int getMoveRange();
     Range< Integer > getDamage();
+    void setDamage(final Range< Integer > aDamage);
+    void setArmor(int newArmor);
     int getTier();
     String getDescription();
     boolean isUpgraded();

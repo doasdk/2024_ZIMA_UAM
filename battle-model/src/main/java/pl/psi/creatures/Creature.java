@@ -8,6 +8,8 @@ package pl.psi.creatures;//  ***************************************************
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import lombok.Setter;
@@ -16,6 +18,8 @@ import pl.psi.TurnQueue;
 import com.google.common.collect.Range;
 
 import lombok.Getter;
+import pl.psi.artifacts.Artifact;
+import pl.psi.artifacts.ArtifactSlots;
 
 /**
  * TODO: Describe this class (The first line - until the first dot - will interpret as the brief description).
@@ -25,9 +29,17 @@ public class Creature implements PropertyChangeListener {
     private CreatureStatisticIf stats;
     @Setter
     private int amount;
+    private Range< Integer > currentDamage;
+    private int currentArmor;
+
     private int currentHp;
     private int counterAttackCounter = 1;
     private DamageCalculatorIf calculator;
+
+    private final List<Artifact> equippedArtifacts =  new ArrayList<>();
+    private final List<ArtifactSlots> slotsOfBodyForEquipment = new ArrayList<>();
+
+
 
     Creature() {
     }
@@ -38,6 +50,29 @@ public class Creature implements PropertyChangeListener {
         amount = aAmount;
         currentHp = stats.getMaxHp();
         calculator = aCalculator;
+    }
+
+
+    public boolean equipOnCreature(Artifact aArtifact){
+        if(!slotsOfBodyForEquipment.contains(aArtifact.getSlot())) {
+            this.slotsOfBodyForEquipment.add(aArtifact.getSlot());
+            this.equippedArtifacts.add(aArtifact);
+            return true;
+        }
+        return false;
+    }
+
+    public void increaseAttackDamage(int increasePower){
+        currentDamage = Range.closed(
+                getDamage().lowerEndpoint() + increasePower,
+                getDamage().upperEndpoint() + increasePower
+        );
+        stats.setDamage(currentDamage);
+
+    }
+    public void increaseDefence(int increasePower){
+        currentArmor = stats.getArmor();
+        currentArmor += increasePower;
     }
 
     public void attack(final Creature aDefender) {
@@ -59,12 +94,14 @@ public class Creature implements PropertyChangeListener {
         int amountToSubstract = Math.round(aDamage / aDefender.getMaxHp());
 
         int hp = aDefender.getCurrentHp() - hpToSubstract;
+
         if (hp <= 0) {
             aDefender.setCurrentHp(aDefender.getMaxHp() - hp);
             aDefender.setAmount(aDefender.getAmount() - 1);
         }
         else{
             aDefender.setCurrentHp(hp);
+
         }
         aDefender.setAmount(aDefender.getAmount() - amountToSubstract);
     }
@@ -91,6 +128,11 @@ public class Creature implements PropertyChangeListener {
     Range<Integer> getDamage() {
         return stats.getDamage();
     }
+    Range<Integer> getCurrentDamage() {
+        return currentDamage;
+    }
+
+
 
     int getAttack() {
         return stats.getAttack();

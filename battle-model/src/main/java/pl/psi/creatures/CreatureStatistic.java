@@ -52,10 +52,10 @@ public enum CreatureStatistic implements CreatureStatisticIf
 
     private final String name;
     private final int attack;
-    private final int armor;
+    private int armor;
     private final int maxHp;
     private final int moveRange;
-    private final Range< Integer > damage;
+    private Range< Integer > damage;
     private final int tier;
     private final String description;
     private final boolean isUpgraded;
@@ -78,5 +78,15 @@ public enum CreatureStatistic implements CreatureStatisticIf
     String getTranslatedName()
     {
         return name;
+    }
+
+    @Override
+    public void setDamage(final Range< Integer > aDamage) {
+        damage = aDamage;
+    }
+
+    @Override
+    public void setArmor(int newArmor) {
+        this.armor = newArmor;
     }
 }

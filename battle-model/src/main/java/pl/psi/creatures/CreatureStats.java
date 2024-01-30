@@ -13,11 +13,21 @@ import lombok.Getter;
 public class CreatureStats implements CreatureStatisticIf{
     private final String name;
     private final int attack;
-    private final int armor;
+    private int armor;
     private final int maxHp;
     private final int moveRange;
-    private final Range< Integer > damage;
+    private Range< Integer > damage;
     private final int tier;
     private final String description;
     private final boolean isUpgraded;
+
+    @Override
+    public void setDamage(Range<Integer> aDamage) {
+        damage = aDamage;
+    }
+
+    @Override
+    public void setArmor(int newArmor) {
+        armor = newArmor;
+    }
 }
