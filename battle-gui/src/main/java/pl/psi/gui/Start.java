@@ -52,12 +52,15 @@ public class Start extends Application
     private Hero createP2()
     {
         final Hero ret = new Hero( List.of( new NecropolisFactory().create( true, 1, 5 ) ), List.of(new Artifact("Centaur's Ax", 2, ArtifactSlots.HAND, ArtifactClass.ATTACK, "Increases attack power"),new Artifact("Sword of Hellfire", 6, ArtifactSlots.HAND, ArtifactClass.ATTACK, "Increases attack power"), new Artifact("Sentinel's Shield", 30, ArtifactSlots.LEFT_HAND, ArtifactClass.DEFENCE, "Increases armor power")) );
+        ret.applyArtifacts(ret.getCreatures().get(0));
         return ret;
     }
 
     private Hero createP1()
     {
         final Hero ret = new Hero( List.of( new NecropolisFactory().create( false, 1, 5 ) ), List.of(new Artifact("Sword of Hellfire ", 6, ArtifactSlots.HAND, ArtifactClass.ATTACK, "Increases attack power"),new Artifact("Sentinel's Shield", 30, ArtifactSlots.LEFT_HAND, ArtifactClass.DEFENCE, "Increases armor power")) );
+        ret.applyArtifacts(ret.getCreatures().get(0));
+
         return ret;
     }
 
